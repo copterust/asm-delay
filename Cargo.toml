@@ -1,0 +1,14 @@
+[package]
+name = "asm-delay"
+version = "0.1.0"
+authors = ["Roma Sokolov <sokolov.r.v@gmail.com>"]
+description = "no_std implementation of embedded-hal DelayMs & DelayUs based on arm::delay"
+keywords = ["arm", "cortex-m", "time"]
+license = "MIT"
+readme = "Readme.md"
+edition = "2018"
+
+
+[dependencies]
+embedded-hal = "0.2.1"
+cortex-m = "0.5.8"
