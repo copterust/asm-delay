@@ -18,8 +18,8 @@ impl AsmDelay {
     /// Consturct new delay timer of CPU frequency (Hertz)
     pub fn new(freq_hz: u32) -> Self {
         AsmDelay {
-            freq_base_ms: freq_hz / 1_000,
-            freq_base_us: freq_hz / 1_000_000,
+            freq_base_ms: (freq_hz / 1_000) / 2,
+            freq_base_us: (freq_hz / 1_000_000) / 2,
         }
     }
 }
