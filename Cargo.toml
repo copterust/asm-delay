@@ -12,3 +12,4 @@ repository = "https://github.com/copterust/asm-delay"
 [dependencies]
 embedded-hal = "0.2.1"
 cortex-m = "0.5.8"
+bitrate = "0.1.1"

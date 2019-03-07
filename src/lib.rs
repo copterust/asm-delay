@@ -3,8 +3,8 @@
 #![deny(missing_docs)]
 #![no_std]
 
+use bitrate::*;
 use cortex_m::asm::delay;
-
 use embedded_hal::blocking::delay::DelayMs;
 use embedded_hal::blocking::delay::DelayUs;
 
@@ -16,7 +16,11 @@ pub struct AsmDelay {
 
 impl AsmDelay {
     /// Consturct new delay timer of CPU frequency (Hertz)
-    pub fn new(freq_hz: u32) -> Self {
+    pub fn new<F>(freq: F) -> Self
+    where
+        F: Into<Hertz<u32>>,
+    {
+        let freq_hz = freq.into().0;
         AsmDelay {
             freq_base_ms: (freq_hz / 1_000) / 2,
             freq_base_us: (freq_hz / 1_000_000) / 2,
