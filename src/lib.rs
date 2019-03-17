@@ -69,7 +69,7 @@ impl CyclesToTime {
     where
         U: Into<u32>,
     {
-        self.freq_base_ms / (cycles.into() as f32)
+        (cycles.into() as f32) / self.freq_base_ms
     }
 
     /// Converts cycles to us
@@ -77,6 +77,6 @@ impl CyclesToTime {
     where
         U: Into<u32>,
     {
-        self.freq_base_us / (cycles.into() as f32)
+        (cycles.into() as f32) / self.freq_base_us
     }
 }
