@@ -10,6 +10,6 @@ edition = "2018"
 repository = "https://github.com/copterust/asm-delay"
 
 [dependencies]
-embedded-hal = "0.2.1"
+embedded-hal = "0.2.3"
 cortex-m = "0.5.8"
 bitrate = "0.1.1"
