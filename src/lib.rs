@@ -59,8 +59,8 @@ impl CyclesToTime {
     {
         let freq_hz = freq.into().0;
         CyclesToTime {
-            freq_base_ms: ((freq_hz / 1_000) / 2) as f32,
-            freq_base_us: ((freq_hz / 1_000_000) / 2) as f32,
+            freq_base_ms: (freq_hz / 1_000) as f32,
+            freq_base_us: (freq_hz / 1_000_000) as f32,
         }
     }
 
