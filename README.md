@@ -18,8 +18,9 @@ version = "<version>"
 ```rust
 use embedded_hal::prelude::*;
 use asm_delay::AsmDelay;
+use asm_delay::bitrate::*;
 
-let d = AsmDelay::new(64_000_000); // 64Mhz
+let d = AsmDelay::new(64.mhz());
 d.delay_ms(5);
 ```
 
