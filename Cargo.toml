@@ -5,7 +5,7 @@ authors = ["Roma Sokolov <sokolov.r.v@gmail.com>"]
 description = "no_std implementation of embedded-hal DelayMs & DelayUs based on arm::delay"
 keywords = ["arm", "cortex-m", "time"]
 license = "MIT"
-readme = "Readme.md"
+readme = "README.md"
 edition = "2018"
 repository = "https://github.com/copterust/asm-delay"
 
