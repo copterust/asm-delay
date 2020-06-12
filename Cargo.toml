@@ -1,6 +1,6 @@
 [package]
 name = "asm-delay"
-version = "0.7.2-alpha.0"
+version = "0.7.2"
 authors = ["Roma Sokolov <sokolov.r.v@gmail.com>"]
 description = "no_std implementation of embedded-hal DelayMs & DelayUs based on arm::delay"
 keywords = ["arm", "cortex-m", "time"]
