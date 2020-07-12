@@ -3,11 +3,10 @@
 #![deny(missing_docs)]
 #![no_std]
 
-pub use bitrate;
-use bitrate::*;
 use cortex_m::asm::delay;
 use embedded_hal::blocking::delay::DelayMs;
 use embedded_hal::blocking::delay::DelayUs;
+pub use embedded_time as time;
 
 /// asm::delay based Timer
 pub struct AsmDelay {
@@ -19,7 +18,7 @@ impl AsmDelay {
     /// Consturct new delay timer of CPU frequency (Hertz)
     pub fn new<F>(freq: F) -> Self
     where
-        F: Into<Hertz<u32>>,
+        F: Into<time::units::Hertz<u32>>,
     {
         let freq_hz = freq.into().0;
         AsmDelay {
@@ -56,7 +55,7 @@ impl CyclesToTime {
     /// Consturct new cycles to time converter of CPU frequency (Hertz)
     pub fn new<F>(freq: F) -> Self
     where
-        F: Into<Hertz<u32>>,
+        F: Into<time::units::Hertz<u32>>,
     {
         let freq_hz = freq.into().0;
         CyclesToTime {
