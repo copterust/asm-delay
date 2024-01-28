@@ -6,13 +6,11 @@
 pub use bitrate;
 use bitrate::*;
 use cortex_m::asm::delay;
-use embedded_hal::blocking::delay::DelayMs;
-use embedded_hal::blocking::delay::DelayUs;
+use embedded_hal::delay::DelayNs;
 
 /// asm::delay based Timer
 pub struct AsmDelay {
-    freq_base_ms: u32,
-    freq_base_us: u32,
+    freq_base_ns: u32,
 }
 
 impl AsmDelay {
@@ -23,26 +21,15 @@ impl AsmDelay {
     {
         let freq_hz = freq.into().0;
         AsmDelay {
-            freq_base_ms: (freq_hz / 1_000) / 2,
-            freq_base_us: (freq_hz / 1_000_000) / 2,
+            freq_base_ns: (freq_hz / 1_000_000_000) / 2,
         }
     }
 }
 
-impl<U> DelayMs<U> for AsmDelay
-where
-    U: Into<u32>,
+impl DelayNs for AsmDelay
 {
-    fn delay_ms(&mut self, ms: U) {
-        delay(self.freq_base_ms * ms.into())
-    }
-}
-impl<U> DelayUs<U> for AsmDelay
-where
-    U: Into<u32>,
-{
-    fn delay_us(&mut self, us: U) {
-        delay(self.freq_base_us * us.into())
+    fn delay_ns(&mut self, ns: u32) {
+        delay(self.freq_base_ns * ns)
     }
 }
 
@@ -50,6 +37,7 @@ where
 pub struct CyclesToTime {
     freq_base_ms: f32,
     freq_base_us: f32,
+    freq_base_ns: f32,
 }
 
 impl CyclesToTime {
@@ -62,6 +50,7 @@ impl CyclesToTime {
         CyclesToTime {
             freq_base_ms: (freq_hz / 1_000) as f32,
             freq_base_us: (freq_hz / 1_000_000) as f32,
+            freq_base_ns: (freq_hz / 1_000_000_00) as f32,
         }
     }
 
@@ -79,5 +68,13 @@ impl CyclesToTime {
         U: Into<u32>,
     {
         (cycles.into() as f32) / self.freq_base_us
+    }
+
+    /// Converts cycles to ns
+    pub fn to_ns<U>(&self, cycles: U) -> f32
+    where
+        U: Into<u32>,
+    {
+        (cycles.into() as f32) / self.freq_base_ns
     }
 }
